@@ -51,3 +51,26 @@ therefore using make will also work.
 ```bash
 valgrind /bin/sh -c "make; valgrind [options] [output-file]; rm [output-file]"
 ```
+
+## Example
+
+Test the code on the example memory leak file [example/main.c](example/main.c)
+(from [valgrind
+quickstart](https://valgrind.org/docs/manual/quick-start.html)):
+
+Find the code:
+
+```bash
+cd example
+```
+
+Test the program:
+
+```bash
+valgrind /bin/sh -c "gcc main.c; valgrind --leak-check=full \
+--show-leak-kinds=all --track-origins=yes --verbose ./a.out; rm ./a.out"
+```
+
+The output will show the memory leaks, refer to
+[quickstart](https://valgrind.org/docs/manual/quick-start.html) for further
+explanations of the memory-leaks.
